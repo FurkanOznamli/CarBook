@@ -258,25 +258,17 @@ namespace CarBook.Persistence.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("CarID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CarID1")
+                    b.Property<int>("CarID")
                         .HasColumnType("int");
 
-                    b.Property<string>("PricingID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PricingID1")
+                    b.Property<int>("PricingID")
                         .HasColumnType("int");
 
                     b.HasKey("CarPricingID");
 
-                    b.HasIndex("CarID1");
+                    b.HasIndex("CarID");
 
-                    b.HasIndex("PricingID1");
+                    b.HasIndex("PricingID");
 
                     b.ToTable("CarPricings");
                 });
@@ -553,13 +545,13 @@ namespace CarBook.Persistence.Migrations
                 {
                     b.HasOne("CarBook.Domain.Entities.Car", "Car")
                         .WithMany("CarPricings")
-                        .HasForeignKey("CarID1")
+                        .HasForeignKey("CarID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CarBook.Domain.Entities.Pricing", "Pricing")
                         .WithMany("CarPricings")
-                        .HasForeignKey("PricingID1")
+                        .HasForeignKey("PricingID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
